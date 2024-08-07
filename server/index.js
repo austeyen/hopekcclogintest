@@ -26,13 +26,21 @@ app.post("/classroom/team-os/logindemo/api/register", (req, res) => {
     const name = req.body.name;
     const email = req.body.email;
     const password = req.body.password;
-
-    const sqlQuery = "INSERT INTO userinfo (name, email, password) VALUES (?,?,?)";
-    db.query(sqlQuery, [name, email, password], (err, result) =>{
-        if(err){
-            return res.status(500).send({error: "Database Error"});
-        } 
-        return res.status(200).send({message: "Registration Successful"});
+    
+    const sqlQuery1 = "SELECT * FROM userinfo WHERE email = ?";
+    db.query(sqlQuery1, [email], (err, result) => {
+        if(result.length == 0){ // not found and valid to register
+            // console.log(result);
+            const sqlQuery2 = "INSERT INTO userinfo (name, email, password) VALUES (?,?,?)";
+            db.query(sqlQuery2, [name, email, password], (err, result) =>{
+                if(err){
+                    return res.status(500).send({error: "Database Error"});
+                } 
+                return res.status(200).send({message: "Registration Successful"});
+            });
+        } else { // found email and shouldnt be able to register 
+            return res.status(400).send({message: "Registration Unsuccessful"}); // User with email exists already
+        }
     });
 }); 
 
@@ -46,7 +54,7 @@ app.post("/classroom/team-os/logindemo/api/login", (req, res) => {
         if(err){
             return res.status(500).send({error: "Database Error"}); // ??? do i even need this
         }
-        if(result.length === 0){ 
+        if(result.length == 0){ 
             return res.status(401).send({message: "Invalid User"});
         }
         return res.status(200).send({message: "Login Successful"});
