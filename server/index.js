@@ -32,7 +32,7 @@ app.post("/classroom/team-os/logindemo/api/register", (req, res) => {
         if(result.length == 0){ // not found and valid to register
             // console.log(result);
             const sqlQuery2 = "INSERT INTO userinfo (name, email, password) VALUES (?,?,?)";
-            db.query(sqlQuery2, [name, email, password], (err, result) =>{
+            db.query(sqlQuery2, [name, email, password], (err, result) => {
                 if(err){
                     return res.status(500).send({error: "Database Error"});
                 } 

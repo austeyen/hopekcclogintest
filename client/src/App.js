@@ -26,7 +26,7 @@ function RegForm() {
       }
       console.log(response); 
     })
-    .catch(error => {
+    .catch(error => { // make more clear
       console.error('Error with registration:', error);
       alert("Invalid Registration!");
     });
