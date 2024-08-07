@@ -23,37 +23,33 @@ app.use(express.json());
 app.use(bodyParser.urlencoded({extended: true}));
 
 app.post("/classroom/team-os/logindemo/api/register", (req, res) => {
-//app.post("/api/register", (req, res) => {
-
     const name = req.body.name;
     const email = req.body.email;
     const password = req.body.password;
 
-
-    const sqlInsert = "INSERT INTO userinfo (name, email, password) VALUES (?,?,?)";
-    db.query(sqlInsert, [name, email, password], (err, result) =>{
-        console.log(result);
-        console.log(err);
+    const sqlQuery = "INSERT INTO userinfo (name, email, password) VALUES (?,?,?)";
+    db.query(sqlQuery, [name, email, password], (err, result) =>{
+        if(err){
+            return res.status(500).send({error: "Database Error"});
+        } 
+        return res.status(200).send({message: "Registration Successful"});
     });
 }); 
 
 
 app.post("/classroom/team-os/logindemo/api/login", (req, res) => {
-//app.post("/api/login", (req, res) => {
-
     const email = req.body.email;
     const password = req.body.password;
 
-    const sqlInsert = 'SELECT * FROM userinfo WHERE email = ? AND password = ?';
-    db.query(sqlInsert, [email, password], (err, result) => {
+    const sqlQuery = 'SELECT * FROM userinfo WHERE email = ? AND password = ?';
+    db.query(sqlQuery, [email, password], (err, result) => { // later modify to only query email, then check if pw == pw, and have only max 1 email/acc
         if(err){
-            console.log(err);
+            return res.status(500).send({error: "Database Error"}); // ??? do i even need this
         }
-        if(result.length === 0){ // need to clean up here
-            //res.send({message: "Invalid User!"});
+        if(result.length === 0){ 
+            return res.status(401).send({message: "Invalid User"});
         }
-        //res.send(result);
-        res.send({message: "Valid User!"});
+        return res.status(200).send({message: "Login Successful"});
 
     })
 }); 

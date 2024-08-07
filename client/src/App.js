@@ -3,7 +3,7 @@ import Axios from 'axios';
 
 // const BASE_URL = 'http://localhost:3001/classroom/team-os/logindemo/'; 
 // const BASE_URL = 'http://class3.hopekcc.org/classroom/team-os/logindemo/'; 
-
+// wat
 
 function RegForm() { 
   const [inputs, setInputs] = useState({ name: '', email: '', password: '' });
@@ -15,18 +15,20 @@ function RegForm() {
   
   const handleSubmit = (event) => {
     event.preventDefault();
-    Axios.post('http://localhost:3001/classroom/team-os/logindemo/api/register', {
+    Axios.post('http://localhost:3001/classroom/team-os/logindemo/api/register', { // make variable url?
       name: inputs.name,
       email: inputs.email,
       password: inputs.password
     })
     .then(response => {
-      console.log(response.data); // Handle success response
-      alert("Successful insert");
+      if(response.status == 200) {
+        alert("Valid Registration!"); 
+      }
+      console.log(response); 
     })
     .catch(error => {
-      console.error('Error inserting data:', error); // Handle error
-      alert("Failed to insert data");
+      console.error('Error with registration:', error);
+      alert("Invalid Registration!");
     });
   };
 
@@ -57,7 +59,7 @@ function RegForm() {
         <label>
           Password:
           <input
-            type="password" // changed to type="password" for password input
+            type="password"
             name="password"
             value={inputs.password}
             onChange={handleChange}
@@ -86,16 +88,15 @@ function LoginForm(){
       password: inputs.password
     })
     .then(response => {
-      if(response.data.message) {
-        alert("Valid!");
+      if(response.status == 200) {
+        alert("Valid User!"); 
       }
-
-      console.log(response.data); // Handle success response
-
+      console.log(response); 
     })
     .catch(error => {
-      console.error('Error inserting data:', error); // Handle error
-      alert("Invalid!");
+      console.error('Error with login:', error); 
+      alert("Invalid User!");
+
     });
   };
 
@@ -116,7 +117,7 @@ function LoginForm(){
         <label>
           Password:
           <input
-            type="password" // changed to type="password" for password input
+            type="password" 
             name="password"
             value={inputs.password}
             onChange={handleChange}
@@ -134,7 +135,7 @@ function App() {
   return (
     <div className="App">
       <h1>
-        Austin Chan - Week 4 - User Reg and Login Test using React, NodeJS, and MySQL
+        SQL Login
       </h1>
       {RegForm()}
       
