@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import Axios from 'axios';
 
 // const BASE_URL = 'http://localhost:3001/classroom/team-os/logindemo/'; 
-const BASE_URL = "http://class3.hopekcc.org/classroom/team-os/logindemo";
+const BASE_URL = "http://class3.hopekcc.org/classroom/team-os/logindemo/build";
 // wat
 
 function RegForm() { 
@@ -15,7 +15,7 @@ function RegForm() {
   
   const handleSubmit = (event) => {
     event.preventDefault();
-    Axios.post('${BASE_URL}/api/register', { // make variable url?
+    Axios.post(`${BASE_URL}/api/register`, { // make variable url?
       name: inputs.name,
       email: inputs.email,
       password: inputs.password
@@ -83,7 +83,7 @@ function LoginForm(){
   
   const handleSubmit = (event) => {
     event.preventDefault();
-    Axios.post('${BASE_URL}/api/login', {
+    Axios.post(`${BASE_URL}/api/register`, {
       email: inputs.email,
       password: inputs.password
     })
