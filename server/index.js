@@ -17,12 +17,12 @@ const db = mysql.createPool({
     password: "password",
     database: "testdb"
 });
-
+ // probably issues
 app.use(cors());
 app.use(express.json());
 app.use(bodyParser.urlencoded({extended: true}));
 
-app.post("/classroom/team-os/logindemo/api/register", (req, res) => {
+app.post("/api/register", (req, res) => {
     const name = req.body.name;
     const email = req.body.email;
     const password = req.body.password;
@@ -45,7 +45,7 @@ app.post("/classroom/team-os/logindemo/api/register", (req, res) => {
 }); 
 
 
-app.post("/classroom/team-os/logindemo/api/login", (req, res) => {
+app.post("/api/login", (req, res) => {
     const email = req.body.email;
     const password = req.body.password;
 

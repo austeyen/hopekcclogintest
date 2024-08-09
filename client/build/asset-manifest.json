@@ -1,10 +1,10 @@
 {
   "files": {
-    "main.js": "/static/js/main.e88d88b2.js",
-    "index.html": "/index.html",
-    "main.e88d88b2.js.map": "/static/js/main.e88d88b2.js.map"
+    "main.js": "/classroom/team-os/logindemo/static/js/main.9a6badf0.js",
+    "index.html": "/classroom/team-os/logindemo/index.html",
+    "main.9a6badf0.js.map": "/classroom/team-os/logindemo/static/js/main.9a6badf0.js.map"
   },
   "entrypoints": [
-    "static/js/main.e88d88b2.js"
+    "static/js/main.9a6badf0.js"
   ]
 }
