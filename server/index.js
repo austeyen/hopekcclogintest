@@ -13,7 +13,7 @@ const bodyParser = require("body-parser");
 
 const db = mysql.createPool({
     host: "localhost",
-    user: "root",
+    user: "austin", //change to root on local
     password: "password",
     database: "testdb"
 });

@@ -83,7 +83,7 @@ function LoginForm(){
   
   const handleSubmit = (event) => {
     event.preventDefault();
-    Axios.post(`${BASE_URL}/api/register`, {
+    Axios.post(`${BASE_URL}/api/login`, {
       email: inputs.email,
       password: inputs.password
     })
