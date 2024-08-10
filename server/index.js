@@ -1,8 +1,16 @@
 const express = require("express");
 const app = express();
-const cors = require("cors");
+// const cors = require("cors");
+const path = require('path');
 const mysql = require("mysql2");
 const bodyParser = require("body-parser");
+
+buildPath =  path.join(__dirname, '../build'); // serving client
+app.use(express.static(buildPath));
+
+app.get('/*', (req, res) => {
+    res.sendFile('index.html', {root : buildPath});
+});
 
 // const db = mysql.createPool({
 //     host: "class3.hopekcc.org",
@@ -17,16 +25,15 @@ const db = mysql.createPool({
     password: "password",
     database: "testdb"
 });
- // probably issues
 
-const corsOptions = {
-    origin: 'http://class3.hopekcc.org/classroom/team-os/logindemo/build',
-    methods: 'GET,HEAD,PUT,PATCH,POST,DELETE',
-    credentials: true,
-    optionsSuccessStatus: 200
-};
+// const corsOptions = {
+//     origin: 'http://class3.hopekcc.org/classroom/team-os/logindemo/build',
+//     methods: 'GET,HEAD,PUT,PATCH,POST,DELETE',
+//     credentials: true,
+//     optionsSuccessStatus: 200
+// };
 
-app.use(cors(corsOptions));
+// app.use(cors(corsOptions));
 app.use(express.json());
 app.use(bodyParser.urlencoded({extended: true}));
 
