@@ -5,12 +5,13 @@ const path = require('path');
 const mysql = require("mysql2");
 const bodyParser = require("body-parser");
 
-buildPath =  path.join(__dirname, '../build'); // serving client
-app.use(express.static(buildPath));
 
-app.get('/*', (req, res) => {
-    res.sendFile('index.html', {root : buildPath});
+app.use(express.static(path.join(__dirname, 'build')));
+
+app.get('/*', function (req, res) {
+  res.sendFile(path.join(__dirname, 'build', 'index.html'));
 });
+
 
 // const db = mysql.createPool({
 //     host: "class3.hopekcc.org",

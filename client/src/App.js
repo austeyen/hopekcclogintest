@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import Axios from 'axios';
 
 // const BASE_URL = 'http://localhost:3001/classroom/team-os/logindemo/'; 
-const BASE_URL = "http://class3.hopekcc.org/classroom/team-os/logindemo/build";
+const BASE_URL = "http://class3.hopekcc.org/classroom/team-os/logindemo/client/build";
 // wat
 
 function RegForm() { 
@@ -24,7 +24,7 @@ function RegForm() {
       if(response.status === 200) {
         alert("Valid Registration!"); 
       }
-      console.log(response); 
+      console.log(response.message); 
     })
     .catch(error => { // make more clear
       console.error('Error with registration:', error);
@@ -91,7 +91,7 @@ function LoginForm(){
       if(response.status === 200) {
         alert("Valid User!"); 
       }
-      console.log(response); 
+      console.log(response.message); 
     })
     .catch(error => {
       console.error('Error with login:', error); 
