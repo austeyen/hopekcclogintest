@@ -18,7 +18,15 @@ const db = mysql.createPool({
     database: "testdb"
 });
  // probably issues
-app.use(cors());
+
+const corsOptions = {
+    origin: 'http://class3.hopekcc.org/classroom/team-os/logindemo/build',
+    methods: 'GET,HEAD,PUT,PATCH,POST,DELETE',
+    credentials: true,
+    optionsSuccessStatus: 200
+};
+
+app.use(cors(corsOptions));
 app.use(express.json());
 app.use(bodyParser.urlencoded({extended: true}));
 
